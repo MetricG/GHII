@@ -44,9 +44,9 @@ class Graph {
           distanceSquared = dx * dx + dy * dy + 0.0001; // 0.0001 to avoid division by zero in case of overlap
         }
         let distance = Math.sqrt(distanceSquared);
-        let force = this.force * this.force / distance; //get repelling force based off of distance
-        a.dx += (dx / distance) * force;
-        a.dy += (dy / distance) * force;
+        let repellingForce = this.force * this.force / distance; //get repelling force based off of distance
+        a.dx += (dx / distance) * repellingForce;
+        a.dy += (dy / distance) * repellingForce;
       }
     }
   }
@@ -61,9 +61,9 @@ class Graph {
       let dy = b.y - a.y;
       let distanceSquared = dx * dx + dy * dy; //get distance between nodes
       let distance = Math.sqrt(distanceSquared);
-      let force = distanceSquared / this.force; // get attraction force based off of distance
-      let fx = (dx / distance) * force;
-      let fy = (dy / distance) * force;
+      let attractionForce = distanceSquared / this.force; // get attraction force based off of distance
+      let fx = (dx / distance) * attractionForce;
+      let fy = (dy / distance) * attractionForce;
       a.dx += fx;
       a.dy += fy;
       b.dx -= fx;
